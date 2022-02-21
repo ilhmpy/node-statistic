@@ -7,14 +7,14 @@ const app = express();
 app.use(cors());
 
 app.post('/', (req, res) => {
-    File.readFileSync("count.txt", "utf8", (err, count) => {
+    File.readFile("count.txt", "utf8", (err, count) => {
         if (err) {
             return;
         };
 
         console.log(count++);
 
-        File.writeFileSync("count.txt", (count++).toString(), (e) => {
+        File.writeFile("count.txt", (count++).toString(), (e) => {
             if (!e) {
                 res.json({ 
                     answer: "hello"
@@ -24,8 +24,8 @@ app.post('/', (req, res) => {
     });
 });
 
-app.get("/", (req, res) => {
-    File.readFileSync("count.txt", "utf8", (err, count) => {
+app.get('/', (req, res) => {
+    File.readFile("count.txt", "utf8", (err, count) => {
         if (err) {
             return;
         };
